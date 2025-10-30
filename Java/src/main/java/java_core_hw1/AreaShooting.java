@@ -1,45 +1,45 @@
-package Code;
+package java_core_hw1;
 
 import java.util.Scanner;
 
-public class Java_core_Hw01 {
+public class AreaShooting {
     public static void main(String[] args) {
         System.out.println("All Set. Get ready to rumble!");
         Scanner scanner = new Scanner(System.in);
         char[][] place = new char[5][5];
-        boolean gameOVER = false;
+        boolean gameOver = false;
 
         int column = (int) (Math.random() * 5);
-        int columnTWO = (int) (Math.random() * 5);
+        int Row = (int) (Math.random() * 5);
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 place[i][j] = '-';
             }
         }
-        while (gameOVER == false) {
+        while (gameOver == false) {
             for (int row = 0; row < 5; row++) {
                 for (int col = 0; col < 5; col++) {
                     System.out.print(place[row][col]);
                 }
                 System.out.println();
             }
-            System.out.println("Column one!");
-            int numb = scanner.nextInt();
-            System.out.println("Column TWO!");
-            int numTWO = scanner.nextInt();
-            if (numb > 5 || numb < 0 || numTWO < 0 || numTWO > 5) {
+            System.out.println("Enter row pls!");
+            int EnteredRow = scanner.nextInt();
+            System.out.println("Enter column!");
+            int EnteredColumn = scanner.nextInt();
+            if (EnteredColumn > 5 || EnteredColumn < 0 || EnteredRow < 0 || EnteredRow > 5) {
                 System.out.println("Pls,try again");
                 continue;
             }
-            if (place[numb-1][numTWO-1] == '*') {
-                System.out.println("ви сюди стріляли, оберіть інше місце");
+            if (place[EnteredRow-1][EnteredColumn-1] == '*') {
+                System.out.println("You're already shooting here.");
                 continue;
             }
-            if (numb == column && numTWO == columnTWO) {
-                gameOVER = true;
+            if (EnteredRow == column && EnteredColumn == Row) {
+                gameOver = true;
                 scanner.close();
                 System.out.println("You have won!");
-                place[numb - 1][numTWO - 1] = 'x';
+                place[EnteredRow - 1][EnteredColumn - 1] = 'x';
                 for (int row = 0; row < 5; row++) {
                     for (int col = 0; col < 5; col++) {
                         System.out.print(place[row][col]);
@@ -47,7 +47,7 @@ public class Java_core_Hw01 {
                     System.out.println();
                 }
             } else {
-                place[numb - 1][numTWO - 1] = '*';
+                place[EnteredRow - 1][EnteredColumn - 1] = '*';
 
             }
 
