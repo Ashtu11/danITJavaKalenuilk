@@ -2,10 +2,8 @@ package Java_core_h3;
 
 import java.util.Scanner;
 
-public class Java_core_hw3 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
+public class Planner {
+    public static String[][] createSchedule() {
         String[][] schedule = new String[7][2];
 
         schedule[0][0] = "Sunday";
@@ -22,6 +20,14 @@ public class Java_core_hw3 {
         schedule[5][1] = "do shopping";
         schedule[6][0] = "Saturday";
         schedule[6][1] = "rest and play games";
+
+        return schedule;
+    }
+    public static void main(String[] args) {
+        String[][] schedule = createSchedule();
+
+        Scanner scanner = new Scanner(System.in);
+
 
         while (true) {
             System.out.println("Please, input the day of the week:");
