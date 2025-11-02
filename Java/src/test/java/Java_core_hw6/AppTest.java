@@ -1,4 +1,4 @@
-package org.example;
+package Java_core_hw6;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
