@@ -1,28 +1,8 @@
-package Java_core_h3;
+package Java_core_hw_3;
 
 import java.util.Scanner;
 
 public class Planner {
-    public static String[][] createSchedule() {
-        String[][] schedule = new String[7][2];
-
-        schedule[0][0] = "Sunday";
-        schedule[0][1] = "do homework";
-        schedule[1][0] = "Monday";
-        schedule[1][1] = "go to courses; watch a film";
-        schedule[2][0] = "Tuesday";
-        schedule[2][1] = "go to the gym";
-        schedule[3][0] = "Wednesday";
-        schedule[3][1] = "meet with friends";
-        schedule[4][0] = "Thursday";
-        schedule[4][1] = "read a book";
-        schedule[5][0] = "Friday";
-        schedule[5][1] = "do shopping";
-        schedule[6][0] = "Saturday";
-        schedule[6][1] = "rest and play games";
-
-        return schedule;
-    }
     public static void main(String[] args) {
         String[][] schedule = createSchedule();
 
@@ -31,14 +11,14 @@ public class Planner {
 
         while (true) {
             System.out.println("Please, input the day of the week:");
-            String input = scanner.nextLine().trim().toLowerCase();
+            String dayOfWeek = scanner.nextLine().trim().toLowerCase();
 
-            if (input.equals("exit")) {
+            if (dayOfWeek.equals("exit")) {
                 System.out.println("Goodbye!");
                 break;
             }
 
-            switch (input) {
+            switch (dayOfWeek) {
                 case "sunday":
                     System.out.println("Your tasks for Sunday: " + schedule[0][1]);
                     break;
@@ -66,6 +46,26 @@ public class Planner {
         }
 
         scanner.close();
+    }
+    public static String[][] createSchedule() {
+        String[][] schedule = new String[7][2];
+
+        schedule[0][0] = "Sunday";
+        schedule[0][1] = "do homework";
+        schedule[1][0] = "Monday";
+        schedule[1][1] = "go to courses; watch a film";
+        schedule[2][0] = "Tuesday";
+        schedule[2][1] = "go to the gym";
+        schedule[3][0] = "Wednesday";
+        schedule[3][1] = "meet with friends";
+        schedule[4][0] = "Thursday";
+        schedule[4][1] = "read a book";
+        schedule[5][0] = "Friday";
+        schedule[5][1] = "do shopping";
+        schedule[6][0] = "Saturday";
+        schedule[6][1] = "rest and play games";
+
+        return schedule;
     }
 
 }
