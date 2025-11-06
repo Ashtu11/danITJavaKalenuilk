@@ -24,22 +24,22 @@ public class AreaShooting {
                 System.out.println();
             }
             System.out.println("Enter row pls!");
-            int EnteredRow = scanner.nextInt();
+            int enteredrow = scanner.nextInt();
             System.out.println("Enter column!");
             int EnteredColumn = scanner.nextInt();
-            if (EnteredColumn > 5 || EnteredColumn < 0 || EnteredRow < 0 || EnteredRow > 5) {
+            if (EnteredColumn > 5 || EnteredColumn < 0 || enteredrow < 0 || enteredrow > 5) {
                 System.out.println("Pls,try again");
                 continue;
             }
-            if (place[EnteredRow-1][EnteredColumn-1] == '*') {
+            if (place[enteredrow-1][EnteredColumn-1] == '*') {
                 System.out.println("You're already shooting here.");
                 continue;
             }
-            if (EnteredRow == column && EnteredColumn == Row) {
+            if (enteredrow == column && EnteredColumn == Row) {
                 gameOver = true;
                 scanner.close();
                 System.out.println("You have won!");
-                place[EnteredRow - 1][EnteredColumn - 1] = 'x';
+                place[enteredrow - 1][EnteredColumn - 1] = 'x';
                 for (int row = 0; row < 5; row++) {
                     for (int col = 0; col < 5; col++) {
                         System.out.print(place[row][col]);
@@ -47,7 +47,7 @@ public class AreaShooting {
                     System.out.println();
                 }
             } else {
-                place[EnteredRow - 1][EnteredColumn - 1] = '*';
+                place[enteredrow - 1][EnteredColumn - 1] = '*';
 
             }
 
