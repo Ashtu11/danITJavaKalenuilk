@@ -1,4 +1,4 @@
-package Java_core_hw4;
+package Java_core_hw_4;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -56,6 +56,22 @@ public class Family {
         Children = newChildren;
         child.setFamily(this);
     }
+
+    public boolean deleteChild(int index) {
+        if (index < 0 || index >= Children.length) {
+            return false;
+        }
+        Children[index].setFamily(null);
+        Human[] newChildren = new Human[Children.length - 1];
+        for (int i = 0, j = 0; i < Children.length; i++) {
+            if (i != index) {
+                newChildren[j++] = Children[i];
+            }
+        }
+        Children = newChildren;
+        return true;
+    }
+
 
     public int countFamily() {
         return 2 + Children.length;

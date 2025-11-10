@@ -1,4 +1,4 @@
-package Java_core_hw4;
+package Java_core_hw_4;
 
 import java.util.Arrays;
 import java.util.Objects;

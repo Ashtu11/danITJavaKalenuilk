@@ -1,4 +1,4 @@
-package Java_core_hw4;
+package Java_core_hw_4;
 
 public class Main {
     public static void main(String[] args) {
