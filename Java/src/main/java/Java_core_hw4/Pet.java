@@ -10,19 +10,6 @@ public class Pet {
     private int trickLevel;
     private String[] habits;
 
-    public void eat() {
-        System.out.println("Я їм.");
-
-    }
-
-    public void respond() {
-        System.out.println("Привіт, хазяїн. Я " + this.nickname + "Я скучив!");
-    }
-
-    public void foul() {
-        System.out.println("Потрібно добре замести сліди...");
-
-    }
 
     public Pet() {
 
@@ -80,6 +67,19 @@ public class Pet {
 
     public void setHabits(String[] habits) {
         this.habits = habits;
+    }
+    public void eat() {
+        System.out.println("I'm eating.");
+
+    }
+
+    public void respond() {
+        System.out.println("Hello, master. I am " + this.nickname + "I missed you!");
+    }
+
+    public void foul() {
+        System.out.println("I need to cover your tracks well...");
+
     }
 
     @Override

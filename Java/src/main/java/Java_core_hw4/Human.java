@@ -56,29 +56,29 @@ public class Human {
 
 
     public void greetPet() {
-        System.out.println("Привіт, " + this.family.getPet().getNickname() + "!");
+        System.out.println("Hi, " + this.family.getPet().getNickname() + "!");
     }
 
     public void describe() {
         Human father = this.family.getFather();
         Human mother = this.family.getMother();
-        System.out.println("Ім'я: " + name);
-        System.out.println("Прізвище: " + surname);
-        System.out.println("Рік народження: " + year);
+        System.out.println("Name: " + name);
+        System.out.println("Surname: " + surname);
+        System.out.println("Year of birth: " + year);
         System.out.println("IQ: " + iq);
         if (mother != null)
-            System.out.println("Мама: " + mother.getFullName());
+            System.out.println("Mother: " + mother.getFullName());
         if (father != null)
-            System.out.println("Тато: " + father.getFullName());
+            System.out.println("Dad: " + father.getFullName());
     }
 
     public void describePet() {
         Pet pet = this.family.getPet();
-        System.out.println("У мене є " +
+        System.out.println("I have " +
                 pet.getSpecies() +
-                " їй " + pet.getAge() +
-                " років, він " +
-                (pet.getTrickLevel() > 50 ? "дуже хитрий" : "майже не хитрий"));
+                " he is " + pet.getAge() +
+                " years, he " +
+                (pet.getTrickLevel() > 50 ? "very cunning" : "almost not cunning"));
         System.out.println(pet.getNickname());
 
     }

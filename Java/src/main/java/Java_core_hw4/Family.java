@@ -9,6 +9,15 @@ public class Family {
     private Human[] Children;
     private Pet pet;
 
+    public Family(Human mother, Human father) {
+        this.Mother = mother;
+        this.Father = father;
+        this.Children = new Human[0];
+        mother.setFamily(this);
+        father.setFamily(this);
+
+    }
+
     public void setMother(Human mother) {
         Mother = mother;
     }
@@ -41,20 +50,13 @@ public class Family {
         return pet;
     }
 
-    public Family(Human mother, Human father) {
-        this.Mother = mother;
-        this.Father = father;
-        this.Children = new Human[0];
-        mother.setFamily(this);
-        father.setFamily(this);
-
-    }
     public void addChild(Human child) {
         Human[] newChildren = Arrays.copyOf(Children, Children.length + 1);
         newChildren[Children.length] = child;
         Children = newChildren;
         child.setFamily(this);
     }
+
     public int countFamily() {
         return 2 + Children.length;
     }
