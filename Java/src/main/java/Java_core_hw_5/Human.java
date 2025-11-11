@@ -1,4 +1,4 @@
-package Java_core_hw_4;
+package Java_core_hw_5;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -54,9 +54,39 @@ public class Human {
         return this.name + " " + this.surname;
     }
 
+    public String getActivity(DayOfWeek dayOfWeek){
+        String activity = "";
+        for(int i = 0; i < schedule.length; i++){
+            if(schedule[i][0].equals(dayOfWeek.getDayOfWeekVal())){
+                activity = schedule[i][1];
+                break;
+            }
+        }
+        return activity ;
+    }
+
 
     public void greetPet() {
         System.out.println("Hi, " + this.family.getPet().getNickname() + "!");
+    }
+
+
+    protected void generateCalend(){
+        schedule = new String[7][2];
+        schedule[0][0] = DayOfWeek.MONDAY.getDayOfWeekVal();
+        schedule[0][1] = "Go to school";
+        schedule[1][0] = DayOfWeek.TUESDAY.getDayOfWeekVal();
+        schedule[1][1] = "Go to cinema";
+        schedule[2][0] = DayOfWeek.WEDNESDAY.getDayOfWeekVal();
+        schedule[2][1] = "Time to gym";
+        schedule[3][0] = DayOfWeek.THURSDAY.getDayOfWeekVal();
+        schedule[3][1] = "Clean room";
+        schedule[4][0] = DayOfWeek.FRIDAY.getDayOfWeekVal();
+        schedule[4][1] = "Time for java";
+        schedule[5][0] = DayOfWeek.SATURDAY.getDayOfWeekVal();
+        schedule[5][1] = "Time for rest";
+        schedule[6][0] = DayOfWeek.SUNDAY.getDayOfWeekVal();
+        schedule[6][1] = "Go to Church";
     }
 
     public void describe() {

@@ -1,9 +1,9 @@
-package Java_core_hw_4;
+package Java_core_hw_5;
 
 public class Main {
     public static void main(String[] args) {
-        Pet dog = new Pet("Rock", "dog", 75, 5, new String[]{"eat", "drink", "sleep"});
-        Pet cat = new Pet("", "Murka", 45, 2, new String[]{"scratch", "sleep"});
+        Pet dog = new Pet("Rock",Species.DOG, 75, 5, new String[]{"eat", "drink", "sleep"});
+        Pet cat = new Pet("Murka", Species.CAT, 45, 2, new String[]{"scratch", "sleep"});
 
 
         Human mother1 = new Human("Jane", "Karleone", 1975, (byte) 80);
@@ -11,6 +11,11 @@ public class Main {
 
         Human mother2 = new Human("Anna", "Smith", 1980, (byte) 90);
         Human father2 = new Human("Michael", "Karleone", 1977, (byte) 90);
+
+        mother1.generateCalend();
+        mother2.generateCalend();
+        System.out.println("Jane's Monday activity: " + mother1.getActivity(DayOfWeek.MONDAY));
+        System.out.println("Anna's Friday activity: " + mother2.getActivity(DayOfWeek.FRIDAY));
 
 
         Family family1 = new Family(mother1, father1);
@@ -36,15 +41,16 @@ public class Main {
 
         System.out.println("\nFamily 2 ");
         System.out.println(family2);
-        System.out.println("Number of family members: " + family2.countFamily());
+        System.out.println("Number of family members:" + family2.countFamily());
         child2.greetPet();
         child2.describePet();
 
 
         System.out.println("\nAre families the same? " + family1.equals(family2));
         System.out.println("Are the parents the same? " + father1.equals(father2));
-        System.out.println("Are the animals the same? " + dog.equals(cat));
+        System.out.println("Are the animals the same?" + dog.equals(cat));
     }
+
 }
 
 

@@ -1,26 +1,39 @@
-package Java_core_hw_4;
+package Java_core_hw_5;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 public class Pet {
-    private String species;
+    private Species species;
     private String nickname;
     private int age;
     private int trickLevel;
     private String[] habits;
 
+    public void eat() {
+        System.out.println("I'm eating.");
+
+    }
+
+    public void respond() {
+        System.out.println("Hello, master. I am " + this.nickname + "I missed you!");
+    }
+
+    public void foul() {
+        System.out.println("I need to cover your tracks well...");
+
+    }
 
     public Pet() {
 
     }
 
-    public Pet(String nickname, String species) {
+    public Pet(String nickname, Species species) {
         this.nickname = nickname;
         this.species = species;
     }
 
-    public Pet(String nickname, String species, int trickLevel, int age, String[] habits) {
+    public Pet(String nickname, Species species, int trickLevel, int age, String[] habits) {
         this.species = species;
         this.nickname = nickname;
         this.age = age;
@@ -29,7 +42,7 @@ public class Pet {
 
     }
 
-    public String getSpecies() {
+    public Species getSpecies() {
         return species;
     }
 
@@ -49,7 +62,7 @@ public class Pet {
         return habits;
     }
 
-    public void setSpecies(String species) {
+    public void setSpecies(Species species) {
         this.species = species;
     }
 
@@ -67,19 +80,6 @@ public class Pet {
 
     public void setHabits(String[] habits) {
         this.habits = habits;
-    }
-    public void eat() {
-        System.out.println("I'm eating.");
-
-    }
-
-    public void respond() {
-        System.out.println("Hello, master. I am " + this.nickname + "I missed you!");
-    }
-
-    public void foul() {
-        System.out.println("I need to cover your tracks well...");
-
     }
 
     @Override
