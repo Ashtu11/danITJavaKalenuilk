@@ -3,12 +3,19 @@ package Java_core_hw_5;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Pet {
-    private Species species;
-    private String nickname;
-    private int age;
-    private int trickLevel;
-    private String[] habits;
+public abstract class Pet {
+    protected Species species;
+    protected String nickname;
+    protected int age;
+    protected int trickLevel;
+    protected String[] habits;
+
+    public Pet(String nickname, int age, int trickLevel, String[] habits) {
+        this.nickname = nickname;
+        this.age = age;
+        this.trickLevel = trickLevel;
+        this.habits = habits;
+    }
 
     public void eat() {
         System.out.println("I'm eating.");
@@ -21,10 +28,6 @@ public class Pet {
 
     public void foul() {
         System.out.println("I need to cover your tracks well...");
-
-    }
-
-    public Pet() {
 
     }
 
