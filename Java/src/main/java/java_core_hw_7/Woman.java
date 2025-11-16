@@ -1,4 +1,4 @@
-package java_core_hw_6;
+package java_core_hw_7;
 
 public final class Woman extends Human {
     public Woman(String name, String surname, int year) {

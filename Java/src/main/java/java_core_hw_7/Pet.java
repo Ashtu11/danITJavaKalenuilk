@@ -1,4 +1,4 @@
-package java_core_hw_6;
+package java_core_hw_7;
 
 import java.util.Objects;
 import java.util.Set;
@@ -15,6 +15,9 @@ public abstract class Pet {
         this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
+    }
+
+    public Pet(Species rex, String species) {
     }
 
     public void eat() {
