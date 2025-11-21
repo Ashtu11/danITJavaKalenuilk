@@ -1,7 +1,7 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
 public final class Man extends Human {
-    public Man(String name, String surname, int year) {
+    public Man(String name, String surname, String fatherBirth, int year) {
         super(name, surname, year);
     }
 
@@ -20,6 +20,6 @@ public final class Man extends Human {
         }
     }
     public void repairCar(){
-        System.out.println(getName()+ "is repairing his car");
+        System.out.println(getName()+ " is repairing his car");
     }
-    }
+}

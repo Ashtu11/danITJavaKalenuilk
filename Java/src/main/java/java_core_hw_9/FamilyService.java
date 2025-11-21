@@ -1,11 +1,12 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
 
 public class FamilyService {
     private final FamilyDao familyDao;
+    private final int MAX_FAMILY_SIZE = 6;
 
     public FamilyService(FamilyDao familyDao) {
         this.familyDao = familyDao;
@@ -18,16 +19,18 @@ public class FamilyService {
     public void displayAllFamilies() {
         List<Family> families = familyDao.getAllFamilies();
         for (int i = 0; i < families.size(); i++) {
-            System.out.println(i + ": " + families.get(i));
+            System.out.println((i + 1) + ": " + families.get(i).prettyFormat());
         }
     }
 
     public List<Family> getFamiliesBiggerThan(int size) {
         List<Family> result = new ArrayList<>();
-        for (Family family : familyDao.getAllFamilies()) {
+        List<Family> families = familyDao.getAllFamilies();
+        for (int i = 0; i < families.size(); i++) {
+            Family family = families.get(i);
             if (family.countFamily() > size) {
                 result.add(family);
-                System.out.println(family);
+                System.out.println((i + 1) + ": " + family.prettyFormat());
             }
         }
         return result;
@@ -35,10 +38,12 @@ public class FamilyService {
 
     public List<Family> getFamiliesLessThan(int size) {
         List<Family> result = new ArrayList<>();
-        for (Family family : familyDao.getAllFamilies()) {
+        List<Family> families = familyDao.getAllFamilies();
+        for (int i = 0; i < families.size(); i++) {
+            Family family = families.get(i);
             if (family.countFamily() < size) {
                 result.add(family);
-                System.out.println(family);
+                System.out.println((i + 1) + ": " + family.prettyFormat());
             }
         }
         return result;
@@ -62,6 +67,9 @@ public class FamilyService {
     }
 
     public Family bornChild(Family family, String boyName, String girlName) {
+        if (family.countFamily() >= MAX_FAMILY_SIZE) {
+            throw new FamilyOverflowException("Cannot born child: family size would exceed limit (" + MAX_FAMILY_SIZE + ").");
+        }
 
         boolean isBoy = Math.random() > 0.5;
 
@@ -76,6 +84,9 @@ public class FamilyService {
     }
 
     public Family adoptChild(Family family, Human child) {
+        if (family.countFamily() >= MAX_FAMILY_SIZE) {
+            throw new FamilyOverflowException("Cannot adopt child: family size would exceed limit (" + MAX_FAMILY_SIZE + ").");
+        }
         child.setFamily(family);
         family.addChild(child);
         familyDao.saveFamily(family);
@@ -84,16 +95,13 @@ public class FamilyService {
 
     public void deleteAllChildrenOlderThen(int age) {
         for (Family family : familyDao.getAllFamilies()) {
-
             Iterator<Human> it = family.getChildren().iterator();
-
             while (it.hasNext()) {
                 Human child = it.next();
                 if (child.getAge() > age) {
                     it.remove();
                 }
             }
-
             familyDao.saveFamily(family);
         }
     }

@@ -1,4 +1,4 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
 public interface Foulable {
     void foul();

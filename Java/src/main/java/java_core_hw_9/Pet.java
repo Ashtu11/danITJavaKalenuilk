@@ -1,4 +1,4 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
 import java.util.Objects;
 import java.util.Set;
@@ -22,14 +22,12 @@ public abstract class Pet {
 
     public void eat() {
         System.out.println("I'm eating.");
-
     }
 
     public abstract void respond();
 
     public void foul() {
         System.out.println("I need to cover your tracks well...");
-
     }
 
     public Pet(String nickname, Species species) {
@@ -43,57 +41,33 @@ public abstract class Pet {
         this.age = age;
         this.habits = habits;
         this.trickLevel = trickLevel;
-
     }
 
-    public Species getSpecies() {
-        return species;
-    }
+    public Species getSpecies() { return species; }
+    public int getAge() { return age; }
+    public String getNickname() { return nickname; }
+    public int getTrickLevel() { return trickLevel; }
+    public Set<String> getHabits() { return habits; }
 
-    public int getAge() {
-        return age;
-    }
+    public void setSpecies(Species species) { this.species = species; }
+    public void setNickname(String nickname) { this.nickname = nickname; }
+    public void setAge(int age) { this.age = age; }
+    public void setTrickLevel(int trickLevel) { this.trickLevel = trickLevel; }
+    public void setHabits(Set<String> habits) { this.habits = habits; }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public int getTrickLevel() {
-        return trickLevel;
-    }
-
-    public Set<String> getHabits() {
-        return habits;
-    }
-
-    public void setSpecies(Species species) {
-        this.species = species;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setTrickLevel(int trickLevel) {
-        this.trickLevel = trickLevel;
-    }
-
-    public void setHabits(Set<String> habits) {
-        this.habits = habits;
+    public String prettyFormat() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\t\tspecies: ").append(species).append("\n");
+        sb.append("\t\tnickname: ").append(nickname).append("\n");
+        sb.append("\t\tage: ").append(age).append("\n");
+        sb.append("\t\ttrickLevel: ").append(trickLevel).append("\n");
+        sb.append("\t\thabits: ").append(habits).append("\n");
+        return sb.toString();
     }
 
     @Override
     public String toString() {
-        return species + "{" +
-                "nickname='" + nickname + '\'' +
-                ", age=" + age +
-                ", trickLevel=" + trickLevel +
-                ", habits=" + habits +
-                '}';
+        return prettyFormat();
     }
 
     @Override
