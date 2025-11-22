@@ -1,4 +1,4 @@
-package java_core_hw_9;
+package java_core_hw_10;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,9 +12,7 @@ public class FamilyService {
         this.familyDao = familyDao;
     }
 
-    public List<Family> getAllFamilies() {
-        return familyDao.getAllFamilies();
-    }
+    public List<Family> getAllFamilies() { return familyDao.getAllFamilies(); }
 
     public void displayAllFamilies() {
         List<Family> families = familyDao.getAllFamilies();
@@ -72,14 +70,9 @@ public class FamilyService {
         }
 
         boolean isBoy = Math.random() > 0.5;
-
-        Human child = isBoy
-                ? Human.createBoy(boyName, family)
-                : Human.createGirl(girlName, family);
-
+        Human child = isBoy ? Human.createBoy(boyName, family) : Human.createGirl(girlName, family);
         family.addChild(child);
         familyDao.saveFamily(family);
-
         return family;
     }
 
@@ -98,21 +91,15 @@ public class FamilyService {
             Iterator<Human> it = family.getChildren().iterator();
             while (it.hasNext()) {
                 Human child = it.next();
-                if (child.getAge() > age) {
-                    it.remove();
-                }
+                if (child.getAge() > age) it.remove();
             }
             familyDao.saveFamily(family);
         }
     }
 
-    public int count() {
-        return familyDao.getAllFamilies().size();
-    }
+    public int count() { return familyDao.getAllFamilies().size(); }
 
-    public Family getFamilyById(int index) {
-        return familyDao.getFamilyByIndex(index);
-    }
+    public Family getFamilyById(int index) { return familyDao.getFamilyByIndex(index); }
 
     public List<Pet> getPets(int familyIndex) {
         Family f = familyDao.getFamilyByIndex(familyIndex);
@@ -121,9 +108,21 @@ public class FamilyService {
 
     public void addPet(int familyIndex, Pet pet) {
         Family f = familyDao.getFamilyByIndex(familyIndex);
-        if (f != null) {
-            f.addPet(pet);
-            familyDao.saveFamily(f);
-        }
+        if (f != null) { f.addPet(pet); familyDao.saveFamily(f); }
     }
+
+
+    public void saveToFile(String path) throws Exception {
+        if (familyDao instanceof CollectionFamilyDao) ((CollectionFamilyDao) familyDao).saveToFile(path);
+        else throw new UnsupportedOperationException("Save not supported by DAO");
+    }
+
+    public void loadFromFile(String path) throws Exception {
+        if (familyDao instanceof CollectionFamilyDao) {
+            List<Family> loaded = ((CollectionFamilyDao) familyDao).loadFromFile(path);
+            familyDao.loadData(loaded);
+        } else throw new UnsupportedOperationException("Load not supported by DAO");
+    }
+
+    public void loadData(List<Family> families) { familyDao.loadData(families); }
 }
