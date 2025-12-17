@@ -1,5 +1,10 @@
 package java_core_hw_6;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
@@ -7,29 +12,39 @@ import java.util.Objects;
 public class Human {
     private String name;
     private String surname;
-    private int year;
+    private long birthDate;
     private byte iq;
     private Family family;
     private Map<DayOfWeek, String> schedule = new EnumMap<>(DayOfWeek.class);
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     public Human(String name, String surname, int year) {
         this.name = name;
         this.surname = surname;
-        this.year = year;
+        this.birthDate = LocalDate.of(year, 1, 1)
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli();
     }
 
     public Human(String name, String surname, int year, byte iq) {
-        this.name = name;
-        this.surname = surname;
-        this.year = year;
+        this(name, surname, year);
         this.iq = iq;
     }
 
-    public Human(String name, String surname, int year, Human Mother, Human Father) {
+    public Human(String name, String surname, String birthDateStr, byte iq) {
         this.name = name;
         this.surname = surname;
-        this.year = year;
+        this.iq = iq;
+
+        LocalDate localDate = LocalDate.parse(birthDateStr, FORMATTER);
+        this.birthDate = localDate
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli();
     }
+
     public Family getFamily() {
         return family;
     }
@@ -47,6 +62,10 @@ public class Human {
 
     public String getName() {
         return this.name;
+    }
+
+    public Long getBirthDate() {
+        return birthDate;
     }
 
     public String getFullName() {
@@ -71,7 +90,6 @@ public class Human {
         schedule.put(DayOfWeek.SUNDAY, "Go to church");
     }
 
-
     public void describePet() {
         for (Pet pet : this.family.getPets()) {
             System.out.println("I have " + pet.getSpecies() + ", he is " + pet.getAge() + " years, he " +
@@ -80,12 +98,33 @@ public class Human {
         }
     }
 
+    public String describeAge() {
+        LocalDate birth = Instant.ofEpochMilli(birthDate)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+
+        LocalDate now = LocalDate.now();
+
+        Period period = Period.between(birth, now);
+
+        return period.getYears() + " years, "
+                + period.getMonths() + " months, "
+                + period.getDays() + " days";
+    }
+
+    public String getFormattedBirthDate() {
+        return Instant.ofEpochMilli(birthDate)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate()
+                .format(FORMATTER);
+    }
+
     @Override
     public String toString() {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year=" + year +
+                ", birthDate=" + getFormattedBirthDate() +
                 ", iq=" + iq +
                 ", schedule=" + schedule +
                 '}';
@@ -95,11 +134,11 @@ public class Human {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Human human = (Human) o;
-        return year == human.year && iq == human.iq;
+        return birthDate == human.birthDate && iq == human.iq;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(year, iq);
+        return Objects.hash(birthDate, iq);
     }
 }

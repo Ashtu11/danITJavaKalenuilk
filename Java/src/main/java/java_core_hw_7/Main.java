@@ -34,42 +34,34 @@ public class Main {
         family1.addChild(child1);
         family2.addChild(child2);
 
+        Human adoptedChild = new Woman("Jane", "Karloene", 1975, (byte) 80);
+        family1.addChild(adoptedChild);
+
+        System.out.println("\nAdopted child age: " + adoptedChild.describeAge());
+
         family1.getPets().forEach(Pet::eat);
         family2.getPets().forEach(Pet::eat);
         fish.eat();
 
-
         family2.addPet(roboCat);
 
-        System.out.println(" Family 1 ");
+        System.out.println("\nFamily 1 ");
         System.out.println(family1);
-        System.out.println("Number of family members:" + family1.countFamily());
+        System.out.println("Number of family members: " + family1.countFamily());
         child1.greetPet();
         child1.describePet();
 
         System.out.println("\nFamily 2 ");
         System.out.println(family2);
-        System.out.println("Number of family members:" + family2.countFamily());
+        System.out.println("Number of family members: " + family2.countFamily());
         child2.greetPet();
         child2.describePet();
 
         System.out.println("\nAre families the same? " + family1.equals(family2));
         System.out.println("Are the parents the same? " + father1.equals(father2));
-        System.out.println("Are the animals the same?" + dog.equals(cat));
+        System.out.println("Are the animals the same? " + dog.equals(cat));
 
         ((Man) father1).repairCar();
         ((Woman) mother2).makeup();
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
