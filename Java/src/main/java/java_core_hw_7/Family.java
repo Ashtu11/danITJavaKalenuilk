@@ -1,54 +1,33 @@
-package java_core_hw_6;
+package java_core_hw_7;
 
 import java.util.*;
 
 public class Family {
-    private Human Mother;
-    private Human Father;
+    private Human mother;
+    private Human father;
     private List<Human> children;
     private Set<Pet> pets;
 
-    public void setMother(Human mother) {
-        Mother = mother;
-    }
-
-    public void setFather(Human father) {
-        Father = father;
-    }
-
-    public void setChildren(List<Human> children) {
-        this.children = children;
-    }
-
-    public Set<Pet> getPets() {
-        return pets;
-    }
-
-    public Human getMother() {
-        return Mother;
-    }
-
-    public Human getFather() {
-        return Father;
-    }
-
-    public List<Human> getChildren() {
-        return children;
-    }
-
-    public void setPets(Set<Pet> pets) {
-        this.pets = pets;
-    }
-
     public Family(Human mother, Human father) {
-        this.Mother = mother;
-        this.Father = father;
+        this.mother = mother;
+        this.father = father;
         this.children = new ArrayList<>();
         this.pets = new HashSet<>();
         mother.setFamily(this);
         father.setFamily(this);
-
     }
+
+    public Human getMother() { return mother; }
+    public Human getFather() { return father; }
+    public List<Human> getChildren() { return children; }
+    public List<Pet> getPets() {
+        return new ArrayList<>(pets);
+    }
+
+    public void setMother(Human mother) { this.mother = mother; }
+    public void setFather(Human father) { this.father = father; }
+    public void setChildren(List<Human> children) { this.children = children; }
+    public void setPets(Set<Pet> pets) { this.pets = pets; }
 
     public void addPet(Pet pet) {
         pets.add(pet);
@@ -86,8 +65,8 @@ public class Family {
     @Override
     public String toString() {
         return "Family{" +
-                "mother=" + Mother +
-                ", father=" + Father +
+                "mother=" + mother +
+                ", father=" + father +
                 ", children=" + children +
                 ", pets=" + pets +
                 '}';
@@ -98,16 +77,14 @@ public class Family {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Family family = (Family) o;
-        return Objects.equals(Mother, family.Mother)
-                && Objects.equals(Father, family.Father)
+        return Objects.equals(mother, family.mother)
+                && Objects.equals(father, family.father)
                 && Objects.equals(children, family.children)
                 && Objects.equals(pets, family.pets);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Mother, Father);
+        return Objects.hash(mother, father);
     }
-
 }
-

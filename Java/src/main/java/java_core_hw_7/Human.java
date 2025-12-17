@@ -1,4 +1,4 @@
-package java_core_hw_6;
+package java_core_hw_7;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -22,6 +22,7 @@ public class Human {
     public Human(String name, String surname, int year) {
         this.name = name;
         this.surname = surname;
+
         this.birthDate = LocalDate.of(year, 1, 1)
                 .atStartOfDay(ZoneId.systemDefault())
                 .toInstant()
@@ -45,6 +46,20 @@ public class Human {
                 .toEpochMilli();
     }
 
+    public Human(String name, String surname, long birthDate, byte iq,
+                 Human adoptMother, Human adoptFather) {
+
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.iq = iq;
+        this.family = new Family(adoptMother, adoptFather);
+    }
+
+    public Human() {
+    }
+
+
     public Family getFamily() {
         return family;
     }
@@ -53,19 +68,16 @@ public class Human {
         this.family = family;
     }
 
-    public Human() {
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public Long getBirthDate() {
         return birthDate;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     public String getFullName() {
@@ -74,10 +86,6 @@ public class Human {
 
     public String getActivity(DayOfWeek day) {
         return schedule.get(day);
-    }
-
-    public void greetPet() {
-        System.out.println("Hi, " + this.family.getPets() + "!");
     }
 
     public void generateCalend() {
@@ -90,12 +98,24 @@ public class Human {
         schedule.put(DayOfWeek.SUNDAY, "Go to church");
     }
 
+    public void greetPet() {
+        System.out.println("Hi, " + this.family.getPets() + "!");
+    }
+
     public void describePet() {
         for (Pet pet : this.family.getPets()) {
             System.out.println("I have " + pet.getSpecies() + ", he is " + pet.getAge() + " years, he " +
                     (pet.getTrickLevel() > 50 ? "very cunning" : "almost not cunning"));
             System.out.println(pet.getNickname());
         }
+    }
+
+    public int getAge() {
+        LocalDate birth = Instant.ofEpochMilli(birthDate)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+
+        return Period.between(birth, LocalDate.now()).getYears();
     }
 
     public String describeAge() {
@@ -118,6 +138,34 @@ public class Human {
                 .toLocalDate()
                 .format(FORMATTER);
     }
+
+    public static Human createBoy(String name, Family family) {
+        int currentYear = LocalDate.now().getYear();
+
+        Human boy = new Man(
+                name,
+                family.getFather().getSurname(),
+                currentYear,
+                (byte) 70
+        );
+
+        boy.setFamily(family);
+        return boy;
+    }
+
+    public static Human createGirl(String name, Family family) {
+        int currentYear = LocalDate.now().getYear();
+
+        Human girl = new Woman(
+                name,
+                family.getFather().getSurname(),
+                currentYear,
+                (byte) 70
+        );
+        girl.setFamily(family);
+        return girl;
+    }
+
 
     @Override
     public String toString() {

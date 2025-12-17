@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/java_core_hw_7.iml" filepath="$PROJECT_DIR$/java_core_hw_7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/danITJavaKalenuilk.iml" filepath="$PROJECT_DIR$/.idea/danITJavaKalenuilk.iml" />
     </modules>
   </component>
 </project>

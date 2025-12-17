@@ -1,4 +1,4 @@
-package java_core_hw_6;
+package java_core_hw_7;
 
 import java.util.Set;
 
