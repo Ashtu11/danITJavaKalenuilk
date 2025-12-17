@@ -1,11 +1,12 @@
-package java_core_hw_9;
+package java_core_hw_10;
 
 import java.util.Set;
 
 public class Dog extends Pet implements Foulable {
+    public Dog() { super(); this.species = Species.DOG; }
+
     public Dog(String nickname, int age, int trickLevel, Set<String> habits) {
-        super(nickname, age, trickLevel, habits);
-        this.species = Species.DOG;
+        super(nickname, Species.DOG, age, trickLevel, habits);
     }
 
     @Override

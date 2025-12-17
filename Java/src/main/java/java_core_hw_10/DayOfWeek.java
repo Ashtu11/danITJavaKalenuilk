@@ -1,4 +1,4 @@
-package java_core_hw_9;
+package java_core_hw_10;
 
 public enum DayOfWeek {
     MONDAY("Monday"),

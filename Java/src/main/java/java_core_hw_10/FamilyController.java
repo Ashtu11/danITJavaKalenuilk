@@ -1,4 +1,4 @@
-package java_core_hw_9;
+package java_core_hw_10;
 
 import java.util.List;
 
@@ -63,5 +63,17 @@ public class FamilyController {
 
     public void addPet(int index, Pet pet) {
         service.addPet(index, pet);
+    }
+
+    public void saveToFile(String path) throws Exception {
+        service.saveToFile(path);
+    }
+
+    public void loadFromFile(String path) throws Exception {
+        service.loadFromFile(path);
+    }
+
+    public void loadData(List<Family> families) {
+        service.loadData(families);
     }
 }
