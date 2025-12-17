@@ -1,4 +1,4 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
 import java.util.*;
 
@@ -13,16 +13,14 @@ public class Family {
         this.father = father;
         this.children = new ArrayList<>();
         this.pets = new HashSet<>();
-        mother.setFamily(this);
-        father.setFamily(this);
+        if (mother != null) mother.setFamily(this);
+        if (father != null) father.setFamily(this);
     }
 
     public Human getMother() { return mother; }
     public Human getFather() { return father; }
     public List<Human> getChildren() { return children; }
-    public List<Pet> getPets() {
-        return new ArrayList<>(pets);
-    }
+    public List<Pet> getPets() { return new ArrayList<>(pets); }
 
     public void setMother(Human mother) { this.mother = mother; }
     public void setFather(Human father) { this.father = father; }
@@ -30,7 +28,7 @@ public class Family {
     public void setPets(Set<Pet> pets) { this.pets = pets; }
 
     public void addPet(Pet pet) {
-        pets.add(pet);
+        if (pet != null) pets.add(pet);
     }
 
     public boolean removePet(Pet pet) {
@@ -64,12 +62,7 @@ public class Family {
 
     @Override
     public String toString() {
-        return "Family{" +
-                "mother=" + mother +
-                ", father=" + father +
-                ", children=" + children +
-                ", pets=" + pets +
-                '}';
+        return prettyFormat();
     }
 
     @Override
@@ -86,5 +79,44 @@ public class Family {
     @Override
     public int hashCode() {
         return Objects.hash(mother, father);
+    }
+
+    public String prettyFormat() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("family:\n");
+
+        sb.append("\tmother:\n");
+        if (mother != null) sb.append(mother.prettyFormat());
+        else sb.append("\t\tnull\n");
+
+        sb.append("\tfather:\n");
+        if (father != null) sb.append(father.prettyFormat());
+        else sb.append("\t\tnull\n");
+
+        sb.append("\tchildren:\n");
+        if (children == null || children.isEmpty()) {
+            sb.append("\t\tnone\n");
+        } else {
+            for (Human child : children) {
+                String gender;
+                if (child instanceof Man) gender = "boy";
+                else if (child instanceof Woman) gender = "girl";
+                else gender = "child";
+                sb.append("\t\t").append(gender).append(":\n");
+                sb.append(child.prettyFormat());
+            }
+        }
+
+        sb.append("\tpets:\n");
+        if (pets == null || pets.isEmpty()) {
+            sb.append("\t\tnone\n");
+        } else {
+            for (Pet pet : pets) {
+                sb.append("\t\t").append(pet.getSpecies().toString()).append(":\n");
+                sb.append(pet.prettyFormat());
+            }
+        }
+
+        return sb.toString();
     }
 }

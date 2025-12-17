@@ -1,4 +1,4 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
 import java.util.Set;
 
@@ -12,5 +12,3 @@ public class Fish extends Pet {
         System.out.println("I am a fish and I do not talk to humans.");
     }
 }
-
-

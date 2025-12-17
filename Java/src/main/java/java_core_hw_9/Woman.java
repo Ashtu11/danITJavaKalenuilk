@@ -1,7 +1,7 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
 public final class Woman extends Human {
-    public Woman(String name, String surname, int year) {
+    public Woman(String name, String surname, String motherBirth, int year) {
         super(name, surname, year);
     }
 

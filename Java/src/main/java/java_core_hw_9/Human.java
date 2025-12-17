@@ -1,4 +1,4 @@
-package java_core_hw_7;
+package java_core_hw_9;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -22,7 +22,6 @@ public class Human {
     public Human(String name, String surname, int year) {
         this.name = name;
         this.surname = surname;
-
         this.birthDate = LocalDate.of(year, 1, 1)
                 .atStartOfDay(ZoneId.systemDefault())
                 .toInstant()
@@ -38,7 +37,6 @@ public class Human {
         this.name = name;
         this.surname = surname;
         this.iq = iq;
-
         LocalDate localDate = LocalDate.parse(birthDateStr, FORMATTER);
         this.birthDate = localDate
                 .atStartOfDay(ZoneId.systemDefault())
@@ -59,34 +57,15 @@ public class Human {
     public Human() {
     }
 
-
-    public Family getFamily() {
-        return family;
-    }
-
-    public void setFamily(Family family) {
-        this.family = family;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Long getBirthDate() {
-        return birthDate;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getFullName() {
-        return this.name + " " + this.surname;
-    }
-
-    public String getActivity(DayOfWeek day) {
-        return schedule.get(day);
-    }
+    public Family getFamily() { return family; }
+    public void setFamily(Family family) { this.family = family; }
+    public String getName() { return name; }
+    public Long getBirthDate() { return birthDate; }
+    public String getSurname() { return surname; }
+    public String getFullName() { return this.name + " " + this.surname; }
+    public String getActivity(DayOfWeek day) { return schedule.get(day); }
+    public byte getIq() { return iq; }
+    public Map<DayOfWeek, String> getSchedule() { return schedule; }
 
     public void generateCalend() {
         schedule.put(DayOfWeek.MONDAY, "Go to school");
@@ -99,10 +78,15 @@ public class Human {
     }
 
     public void greetPet() {
+        if (this.family == null || this.family.getPets().isEmpty()) {
+            System.out.println("Hi, I don't have a pet!");
+            return;
+        }
         System.out.println("Hi, " + this.family.getPets() + "!");
     }
 
     public void describePet() {
+        if (this.family == null) return;
         for (Pet pet : this.family.getPets()) {
             System.out.println("I have " + pet.getSpecies() + ", he is " + pet.getAge() + " years, he " +
                     (pet.getTrickLevel() > 50 ? "very cunning" : "almost not cunning"));
@@ -166,16 +150,30 @@ public class Human {
         return girl;
     }
 
+    public String prettyFormat() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\t\tname: ").append(name).append("\n");
+        sb.append("\t\tsurname: ").append(surname).append("\n");
+        sb.append("\t\tbirthDate: ").append(getFormattedBirthDate()).append("\n");
+        sb.append("\t\tiq: ").append(iq).append("\n");
+
+        sb.append("\t\tschedule: ");
+        if (schedule == null || schedule.isEmpty()) {
+            sb.append("null\n");
+        } else {
+            sb.append("\n");
+            schedule.forEach((day, task) ->
+                    sb.append("\t\t\t").append(day).append("=").append(task).append("\n")
+            );
+        }
+
+        return sb.toString();
+    }
 
     @Override
     public String toString() {
-        return "Human{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", birthDate=" + getFormattedBirthDate() +
-                ", iq=" + iq +
-                ", schedule=" + schedule +
-                '}';
+        return prettyFormat();
     }
 
     @Override
